@@ -1,0 +1,1754 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DY Tech | Technology Made Accessible</title>
+    <meta name="description" content="Discover premium smartphones, laptops and accessories at DY Tech Gadget Store. Find your next upgrade today.">
+
+    <!-- Apply saved theme BEFORE first paint (prevents a white flash in dark mode) -->
+    <script>
+        (function () {
+            var theme = null;
+            try { theme = localStorage.getItem('dytech-theme'); } catch (e) {}
+            if (!theme) {
+                theme = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+            }
+            document.documentElement.setAttribute('data-bs-theme', theme);
+        })();
+    </script>
+
+    <!-- Bootstrap 5.3.8 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --navy: #0d1b2a;
+            --navy-light: #1b263b;
+            --blue: #2563eb;
+            --light: #f5f7fb;
+            --muted: #778195;
+
+            /* Theme-aware tokens (light) */
+            --bg: #ffffff;
+            --text: #0d1b2a;
+            --surface: #ffffff;
+            --border: #edf0f5;
+            --border-strong: #e3e8f0;
+            --icon-bg: #eef4ff;
+            --newsletter-bg: #f2f6fd;
+            --addcart-bg: #f5f8ff;
+            --addcart-border: #dce5f5;
+            --nav-link: #586477;
+        }
+
+        /* Theme-aware tokens (dark) */
+        [data-bs-theme="dark"] {
+            --bg: #0b1220;
+            --text: #e6ebf5;
+            --surface: #141e30;
+            --border: #25314a;
+            --border-strong: #2d3a55;
+            --light: #0f1829;
+            --muted: #9aa7bd;
+            --icon-bg: #1a2a4a;
+            --newsletter-bg: #0f1829;
+            --addcart-bg: #1a2a4a;
+            --addcart-border: #2b3f6b;
+            --nav-link: #aab7c9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            transition: background-color .3s, color .3s;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .navbar {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 17px 0;
+            transition: background-color .3s, border-color .3s;
+        }
+
+        .navbar-brand {
+            font-size: 25px;
+            font-weight: 800;
+            color: var(--text);
+            letter-spacing: -1.2px;
+        }
+
+        .brand-dot {
+            color: var(--blue);
+        }
+
+        .navbar .nav-link {
+            color: var(--nav-link);
+            font-size: 13px;
+            font-weight: 600;
+            margin-left: 20px;
+            transition: .3s;
+        }
+
+        .navbar .nav-link:hover {
+            color: var(--blue);
+        }
+
+        .navbar-toggler {
+            border-color: var(--border-strong);
+        }
+
+        [data-bs-theme="dark"] .navbar-toggler-icon {
+            filter: invert(1);
+        }
+
+        .cart-button,
+        .theme-toggle {
+            position: relative;
+            border: 1px solid var(--border-strong);
+            border-radius: 10px;
+            padding: 9px 13px;
+            background: var(--surface);
+            color: var(--text);
+            transition: .3s;
+        }
+
+        .theme-toggle:hover,
+        .cart-button:hover {
+            border-color: var(--blue);
+            color: var(--blue);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--blue);
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 3px 7px;
+            border-radius: 20px;
+        }
+
+        .cart-count.bump {
+            animation: bump .35s ease;
+        }
+
+        @keyframes bump {
+            0%   { transform: scale(1); }
+            50%  { transform: scale(1.5); }
+            100% { transform: scale(1); }
+        }
+
+        .hero {
+            background: var(--navy);
+            color: white;
+            padding: 100px 0;
+            overflow: hidden;
+        }
+
+        .hero-label {
+            color: #93b5ff;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: clamp(38px, 5vw, 65px);
+            font-weight: 800;
+            letter-spacing: -3px;
+            line-height: 1.12;
+            margin: 20px 0;
+        }
+
+        .hero h1 span {
+            color: #6fa1ff;
+        }
+
+        .hero p {
+            color: #b8c3d3;
+            line-height: 1.8;
+            max-width: 470px;
+            font-size: 15px;
+        }
+
+        .btn-primary-custom {
+            background: var(--blue);
+            color: white;
+            border: 1px solid var(--blue);
+            padding: 14px 24px;
+            font-size: 13px;
+            font-weight: 700;
+            border-radius: 8px;
+            transition: .3s;
+        }
+
+        .btn-primary-custom:hover {
+            background: #1d4ed8;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline-custom {
+            color: white;
+            border: 1px solid #526177;
+            padding: 14px 24px;
+            font-size: 13px;
+            font-weight: 700;
+            border-radius: 8px;
+        }
+
+        .btn-outline-custom:hover {
+            background: white;
+            color: var(--navy);
+        }
+
+        .hero-image {
+            width: 100%;
+            max-height: 390px;
+            object-fit: cover;
+            border-radius: 18px;
+            box-shadow: 0 25px 70px rgba(0,0,0,.35);
+        }
+
+        .trust-strip {
+            padding: 27px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .trust-item {
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .trust-item i {
+            color: var(--blue);
+            font-size: 20px;
+            margin-right: 8px;
+        }
+
+        .section-padding {
+            padding: 90px 0;
+        }
+
+        .section-label {
+            color: var(--blue);
+            font-size: 11px;
+            letter-spacing: 2px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-size: clamp(27px, 3vw, 38px);
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            margin-top: 12px;
+        }
+
+        .section-description {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .category-card {
+            background: var(--light);
+            border-radius: 14px;
+            padding: 28px 15px;
+            text-align: center;
+            transition: .3s;
+            height: 100%;
+            border: 1px solid transparent;
+            color: var(--text);
+        }
+
+        .category-card:hover {
+            background: var(--surface);
+            border-color: var(--addcart-border);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(20,40,80,.07);
+        }
+
+        .category-card i {
+            font-size: 34px;
+            color: var(--blue);
+        }
+
+        .category-card h6 {
+            margin: 14px 0 5px;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .category-card p {
+            color: var(--muted);
+            font-size: 11px;
+            margin: 0;
+        }
+
+        .products-section {
+            background: var(--light);
+            transition: background-color .3s;
+        }
+
+        .filter-btn {
+            background: var(--surface);
+            color: var(--muted);
+            border: 1px solid var(--border-strong);
+            border-radius: 30px;
+            padding: 9px 18px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--blue);
+            border-color: var(--blue);
+            color: white;
+        }
+
+        .product-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            height: 100%;
+            transition: .3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px rgba(20,40,80,.12);
+        }
+
+        .product-image {
+            height: 220px;
+            width: 100%;
+            object-fit: cover;
+            background: #f1f4f8;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-category {
+            color: var(--blue);
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .product-name {
+            font-size: 16px;
+            font-weight: 700;
+            margin: 9px 0;
+        }
+
+        .product-description {
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.6;
+            min-height: 36px;
+        }
+
+        .product-price {
+            font-size: 19px;
+            font-weight: 800;
+        }
+
+        .product-old-price {
+            color: var(--muted);
+            text-decoration: line-through;
+            font-size: 11px;
+        }
+
+        .add-cart {
+            border: 1px solid var(--addcart-border);
+            background: var(--addcart-bg);
+            color: var(--blue);
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 7px;
+            padding: 10px;
+            width: 100%;
+            transition: .3s;
+        }
+
+        [data-bs-theme="dark"] .add-cart {
+            color: #8fb3ff;
+        }
+
+        .add-cart:hover {
+            background: var(--blue);
+            border-color: var(--blue);
+            color: white;
+        }
+
+        .promo-section {
+            background: var(--navy-light);
+            color: white;
+            border-radius: 18px;
+            padding: 55px;
+            overflow: hidden;
+        }
+
+        .promo-section h2 {
+            font-weight: 800;
+            font-size: clamp(27px, 4vw, 40px);
+            letter-spacing: -1.5px;
+        }
+
+        .promo-section p {
+            color: #c0cada;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .feature-card {
+            padding: 25px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            border-radius: 12px;
+            height: 100%;
+        }
+
+        .feature-icon {
+            background: var(--icon-bg);
+            color: var(--blue);
+            width: 48px;
+            height: 48px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 12px;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h6 {
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .feature-card p {
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        .newsletter {
+            background: var(--newsletter-bg);
+            padding: 65px 20px;
+            text-align: center;
+            transition: background-color .3s;
+        }
+
+        .newsletter-form {
+            max-width: 480px;
+            margin: 25px auto 0;
+        }
+
+        .newsletter-form .form-control {
+            border: 1px solid var(--border-strong);
+            padding: 13px;
+            font-size: 13px;
+            border-radius: 8px;
+        }
+
+        footer {
+            background: var(--navy);
+            color: white;
+            padding: 65px 0 20px;
+        }
+
+        footer h6 {
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        footer p,
+        footer a {
+            color: #aab7c9;
+            font-size: 12px;
+            line-height: 2;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #344256;
+            padding-top: 20px;
+            margin-top: 40px;
+            color: #8c9aaf;
+            font-size: 11px;
+        }
+
+        .toast-container {
+            z-index: 1100;
+        }
+
+        /* ---------- CART MODAL ---------- */
+        .qty-btn {
+            width: 26px;
+            height: 26px;
+            line-height: 1;
+            padding: 0;
+            border-radius: 6px;
+        }
+
+        /* ---------- LIGHTBOX ---------- */
+        .lightbox-img {
+            cursor: zoom-in;
+        }
+
+        body:has(#lightboxModal.show) .modal-backdrop {
+            --bs-backdrop-opacity: .9;
+        }
+
+        #lightboxModal .modal-content {
+            background: transparent;
+            border: 0;
+        }
+
+        .lb-stage {
+            position: relative;
+            text-align: center;
+        }
+
+        .lb-image {
+            max-width: 100%;
+            max-height: 74vh;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,.5);
+            transition: opacity .25s;
+        }
+
+        .lb-image.loading {
+            opacity: .25;
+        }
+
+        .lb-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            border: 0;
+            border-radius: 50%;
+            background: rgba(0,0,0,.55);
+            color: white;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: .2s;
+        }
+
+        .lb-nav:hover {
+            background: var(--blue);
+        }
+
+        .lb-prev { left: 8px; }
+        .lb-next { right: 8px; }
+
+        .lb-caption {
+            color: #e6ebf5;
+            font-size: 13px;
+            margin-top: 14px;
+            text-align: center;
+        }
+
+        .lb-caption small {
+            color: #9aa7bd;
+        }
+
+        @media (max-width: 991px) {
+            .navbar .nav-link {
+                margin-left: 0;
+                padding: 12px 0;
+            }
+
+            .hero {
+                padding: 70px 0;
+            }
+
+            .hero-image {
+                margin-top: 40px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section-padding {
+                padding: 65px 0;
+            }
+
+            .hero h1 {
+                letter-spacing: -2px;
+            }
+
+            .promo-section {
+                padding: 30px 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+<nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+
+        <a class="navbar-brand" href="#home">
+            DY<span class="brand-dot">.</span>TECH
+        </a>
+
+        <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse" data-bs-target="#mainNav"
+            aria-controls="mainNav" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNav">
+
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#home">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#categories">Categories</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#products">Shop</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">Why DY Tech</a>
+                </li>
+
+                <!-- DARK MODE TOGGLE -->
+                <li class="nav-item ms-lg-4 mt-3 mt-lg-0">
+                    <button class="theme-toggle" type="button" id="themeToggle"
+                        aria-label="Switch to dark mode" title="Toggle dark mode">
+                        <i class="bi bi-moon-stars-fill" id="themeIcon"></i>
+                    </button>
+                </li>
+
+                <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+                    <button class="cart-button" type="button"
+                        data-bs-toggle="modal" data-bs-target="#cartModal"
+                        aria-label="Open shopping cart">
+                        <i class="bi bi-bag"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </button>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<!-- HERO SECTION -->
+<section class="hero" id="home">
+    <div class="container">
+        <div class="row align-items-center">
+
+            <div class="col-lg-6">
+
+                <span class="hero-label">
+                    Technology for your everyday life
+                </span>
+
+                <h1>
+                    Upgrade the way
+                    you <span>experience</span>
+                    technology.
+                </h1>
+
+                <p>
+                    Discover carefully selected gadgets designed to
+                    keep you connected, productive and ready for
+                    what's next. Your next upgrade starts here.
+                </p>
+
+                <div class="d-flex flex-wrap gap-3 mt-4">
+
+                    <a href="#products" class="btn btn-primary-custom">
+                        Explore Products
+                        <i class="bi bi-arrow-right ms-2"></i>
+                    </a>
+
+                    <a href="#about" class="btn btn-outline-custom">
+                        Discover DY Tech
+                    </a>
+
+                </div>
+
+                <div class="d-flex gap-4 mt-5">
+
+                    <div>
+                        <h4 class="fw-bold mb-0">Quality</h4>
+                        <small class="text-secondary">Curated gadgets</small>
+                    </div>
+
+                    <div>
+                        <h4 class="fw-bold mb-0">Flexible</h4>
+                        <small class="text-secondary">Payment options</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-6">
+                <img
+                    src="https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&w=1100&q=85"
+                    class="hero-image lightbox-img"
+                    alt="Modern collection of electronic gadgets">
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- TRUST STRIP -->
+<section class="trust-strip">
+    <div class="container">
+        <div class="row g-3 text-center">
+
+            <div class="col-6 col-md-3 trust-item">
+                <i class="bi bi-shield-check"></i>
+                Quality-focused
+            </div>
+
+            <div class="col-6 col-md-3 trust-item">
+                <i class="bi bi-credit-card"></i>
+                Flexible Payments
+            </div>
+
+            <div class="col-6 col-md-3 trust-item">
+                <i class="bi bi-headset"></i>
+                Customer Support
+            </div>
+
+            <div class="col-6 col-md-3 trust-item">
+                <i class="bi bi-box-seam"></i>
+                Convenient Shopping
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- CATEGORIES -->
+<section class="section-padding" id="categories">
+    <div class="container">
+
+        <div class="text-center mb-5">
+            <span class="section-label">Explore our collection</span>
+            <h2 class="section-title">Find your next essential.</h2>
+            <p class="section-description">
+                Technology that fits your lifestyle and your everyday needs.
+            </p>
+        </div>
+
+        <div class="row g-3">
+
+            <div class="col-6 col-md-3">
+                <a href="#products" class="text-decoration-none">
+                    <div class="category-card">
+                        <i class="bi bi-phone"></i>
+                        <h6>Smartphones</h6>
+                        <p>Stay connected</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-6 col-md-3">
+                <a href="#products" class="text-decoration-none">
+                    <div class="category-card">
+                        <i class="bi bi-laptop"></i>
+                        <h6>Laptops</h6>
+                        <p>Work without limits</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-6 col-md-3">
+                <a href="#products" class="text-decoration-none">
+                    <div class="category-card">
+                        <i class="bi bi-headphones"></i>
+                        <h6>Accessories</h6>
+                        <p>Enhance your setup</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-6 col-md-3">
+                <a href="#products" class="text-decoration-none">
+                    <div class="category-card">
+                        <i class="bi bi-smartwatch"></i>
+                        <h6>Wearables</h6>
+                        <p>Technology on the go</p>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- PRODUCTS -->
+<section class="section-padding products-section" id="products">
+    <div class="container">
+
+        <div class="row align-items-end mb-4">
+
+            <div class="col-md-7">
+                <span class="section-label">The DY Tech collection</span>
+                <h2 class="section-title">Featured products.</h2>
+                <p class="section-description">
+                    Explore gadgets selected for performance, convenience
+                    and everyday value.
+                </p>
+            </div>
+
+            <div class="col-md-5 text-md-end mt-3 mt-md-0">
+                <div class="d-flex flex-wrap justify-content-md-end gap-2">
+
+                    <button class="filter-btn active" data-filter="all">
+                        All
+                    </button>
+
+                    <button class="filter-btn" data-filter="phone">
+                        Phones
+                    </button>
+
+                    <button class="filter-btn" data-filter="laptop">
+                        Laptops
+                    </button>
+
+                    <button class="filter-btn" data-filter="accessory">
+                        Accessories
+                    </button>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row g-4" id="productGrid">
+
+            <!-- PRODUCT 1 -->
+            <div class="col-sm-6 col-lg-3 product-item" data-category="phone">
+                <div class="product-card">
+
+                    <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=700&q=80"
+                        class="product-image lightbox-img" alt="Samsung Galaxy S21 smartphone">
+
+                    <div class="product-info">
+
+                        <span class="product-category">Smartphones</span>
+
+                        <h5 class="product-name">Samsung Galaxy S21</h5>
+
+                        <p class="product-description">
+                            A powerful smartphone for work, entertainment
+                            and everyday communication.
+                        </p>
+
+                        <div class="d-flex align-items-center gap-2 mb-3">
+                            <span class="product-price">₱25,000</span>
+                            <span class="product-old-price">₱28,000</span>
+                        </div>
+
+                        <button class="add-cart"
+                            data-name="Samsung Galaxy S21"
+                            data-price="25000">
+                            <i class="bi bi-bag-plus me-2"></i>
+                            Add to Cart
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- PRODUCT 2 -->
+            <div class="col-sm-6 col-lg-3 product-item" data-category="laptop">
+                <div class="product-card">
+
+                    <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=700&q=80"
+                        class="product-image lightbox-img" alt="MacBook Air M2 laptop">
+
+                    <div class="product-info">
+
+                        <span class="product-category">Laptops</span>
+
+                        <h5 class="product-name">MacBook Air M2</h5>
+
+                        <p class="product-description">
+                            A lightweight productivity companion
+                            for professionals and creators.
+                        </p>
+
+                        <div class="d-flex align-items-center gap-2 mb-3">
+                            <span class="product-price">₱55,000</span>
+                            <span class="product-old-price">₱59,000</span>
+                        </div>
+
+                        <button class="add-cart"
+                            data-name="MacBook Air M2"
+                            data-price="55000">
+                            <i class="bi bi-bag-plus me-2"></i>
+                            Add to Cart
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- PRODUCT 3 -->
+            <div class="col-sm-6 col-lg-3 product-item" data-category="accessory">
+                <div class="product-card">
+
+                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=700&q=80"
+                        class="product-image lightbox-img" alt="Wireless Headphones">
+
+                    <div class="product-info">
+
+                        <span class="product-category">Accessories</span>
+
+                        <h5 class="product-name">Wireless Headphones</h5>
+
+                        <p class="product-description">
+                            Enjoy your music, calls and entertainment
+                            with a comfortable listening experience.
+                        </p>
+
+                        <div class="d-flex align-items-center gap-2 mb-3">
+                            <span class="product-price">₱3,500</span>
+                            <span class="product-old-price">₱4,000</span>
+                        </div>
+
+                        <button class="add-cart"
+                            data-name="Wireless Headphones"
+                            data-price="3500">
+                            <i class="bi bi-bag-plus me-2"></i>
+                            Add to Cart
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- PRODUCT 4 -->
+            <div class="col-sm-6 col-lg-3 product-item" data-category="accessory">
+                <div class="product-card">
+
+                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=700&q=80"
+                        class="product-image lightbox-img" alt="Apple Watch smartwatch">
+
+                    <div class="product-info">
+
+                        <span class="product-category">Wearables</span>
+
+                        <h5 class="product-name">Apple Watch</h5>
+
+                        <p class="product-description">
+                            A smart everyday companion for staying
+                            organized and connected.
+                        </p>
+
+                        <div class="d-flex align-items-center gap-2 mb-3">
+                            <span class="product-price">₱1,999</span>
+                            <span class="product-old-price">₱2,499</span>
+                        </div>
+
+                        <button class="add-cart"
+                            data-name="Apple Watch"
+                            data-price="1999">
+                            <i class="bi bi-bag-plus me-2"></i>
+                            Add to Cart
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- PROMOTION -->
+<section class="section-padding">
+    <div class="container">
+
+        <div class="promo-section">
+
+            <div class="row align-items-center">
+
+                <div class="col-lg-8">
+
+                    <span class="hero-label">Make your next upgrade easier</span>
+
+                    <h2 class="mt-3">
+                        The gadgets you want.
+                        Payment options that work for you.
+                    </h2>
+
+                    <p class="mt-3">
+                        Explore flexible installment options on selected
+                        products and plan your next technology upgrade.
+                    </p>
+
+                    <a href="#products" class="btn btn-primary-custom mt-3">
+                        Shop the collection
+                        <i class="bi bi-arrow-right ms-2"></i>
+                    </a>
+
+                </div>
+
+                <div class="col-lg-4 text-center mt-4 mt-lg-0">
+                    <i class="bi bi-credit-card-2-front"
+                        style="font-size: 130px; color: #6fa1ff;"></i>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- WHY DY TECH -->
+<section class="section-padding" id="about">
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="section-label">The DY Tech difference</span>
+
+            <h2 class="section-title">More than just a gadget store.</h2>
+
+            <p class="section-description">
+                A better shopping experience starts with the right products
+                and reliable customer service.
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-md-4">
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-patch-check"></i>
+                    </div>
+
+                    <h6>Quality-focused selection</h6>
+
+                    <p>
+                        Explore a curated collection of technology products
+                        selected with quality and everyday usability in mind.
+                    </p>
+
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-wallet2"></i>
+                    </div>
+
+                    <h6>Flexible payment options</h6>
+
+                    <p>
+                        Discover payment options designed to make planning
+                        your next gadget purchase more convenient.
+                    </p>
+
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-chat-dots"></i>
+                    </div>
+
+                    <h6>Customer-first support</h6>
+
+                    <p>
+                        Get assistance when choosing products and finding
+                        the right technology for your needs.
+                    </p>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- NEWSLETTER CTA -->
+<section class="newsletter">
+
+    <div class="container">
+
+        <span class="section-label">Stay connected</span>
+
+        <h2 class="section-title">Your next upgrade starts here.</h2>
+
+        <p class="section-description mt-3">
+            Get updates about new arrivals, featured gadgets and special offers.
+        </p>
+
+        <form class="newsletter-form" id="newsletterForm">
+
+            <div class="input-group">
+
+                <input type="email" class="form-control"
+                    placeholder="Enter your email address"
+                    aria-label="Email address" required>
+
+                <button class="btn btn-primary-custom" type="submit">
+                    Subscribe
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <div class="container">
+
+        <div class="row g-4">
+
+            <div class="col-lg-4">
+
+                <a class="navbar-brand text-white" href="#home">
+                    DY<span class="brand-dot">.</span>TECH
+                </a>
+
+                <p class="mt-3">
+                    Technology made accessible. Discover gadgets
+                    that help you connect, create and accomplish more.
+                </p>
+
+                <div class="d-flex gap-3 mt-3">
+                    <a href="#" aria-label="Facebook"><i class="bi bi-facebook fs-5"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="bi bi-instagram fs-5"></i></a>
+                    <a href="#" aria-label="Email"><i class="bi bi-envelope fs-5"></i></a>
+                </div>
+
+            </div>
+
+            <div class="col-6 col-lg-2">
+
+                <h6>Explore</h6>
+
+                <p><a href="#home">Home</a></p>
+                <p><a href="#categories">Categories</a></p>
+                <p><a href="#products">Shop</a></p>
+                <p><a href="#about">About Us</a></p>
+
+            </div>
+
+            <div class="col-6 col-lg-2">
+
+                <h6>Customer Care</h6>
+
+                <p><a href="#about">Help Center</a></p>
+                <p><a href="#about">Payment Options</a></p>
+                <p><a href="#about">Shopping Guide</a></p>
+
+            </div>
+
+            <div class="col-lg-4">
+
+                <h6>Get in touch</h6>
+
+                <p><i class="bi bi-envelope me-2"></i> glenngonzaga311@gmail.com</p>
+                <p><i class="bi bi-geo-alt me-2"></i> SM Mega Mall, Misamis Oriental</p>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom d-flex flex-wrap justify-content-between gap-2">
+            <span>© 2026 DY Tech Gadget Store. All rights reserved.</span>
+            <span>Designed with Bootstrap 5.3</span>
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- CART MODAL -->
+<div class="modal fade" id="cartModal" tabindex="-1"
+    aria-labelledby="cartModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title fw-bold" id="cartModalLabel">
+                    Your Shopping Cart
+                </h5>
+
+                <button type="button" class="btn-close"
+                    data-bs-dismiss="modal" aria-label="Close"></button>
+
+            </div>
+
+            <div class="modal-body" id="cartItems">
+
+                <p class="text-secondary text-center py-3">
+                    Your cart is currently empty.
+                </p>
+
+            </div>
+
+            <div class="modal-footer justify-content-between">
+
+                <strong>Total: <span id="cartTotal">₱0</span></strong>
+
+                <div class="d-flex gap-2">
+                    <button class="btn btn-outline-secondary" id="clearCartButton" type="button">
+                        Clear
+                    </button>
+                    <button class="btn btn-primary" id="checkoutButton" type="button">
+                        Continue to Checkout
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- LIGHTBOX MODAL -->
+<div class="modal fade" id="lightboxModal" tabindex="-1"
+    aria-label="Image viewer" aria-hidden="true">
+
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <div class="d-flex justify-content-end mb-2">
+                <button type="button" class="btn-close btn-close-white"
+                    data-bs-dismiss="modal" aria-label="Close image viewer"></button>
+            </div>
+
+            <div class="lb-stage">
+
+                <button type="button" class="lb-nav lb-prev" id="lbPrev" aria-label="Previous image">
+                    <i class="bi bi-chevron-left"></i>
+                </button>
+
+                <img src="" alt="" class="lb-image" id="lbImage">
+
+                <button type="button" class="lb-nav lb-next" id="lbNext" aria-label="Next image">
+                    <i class="bi bi-chevron-right"></i>
+                </button>
+
+            </div>
+
+            <div class="lb-caption">
+                <span id="lbCaption"></span>
+                <small class="ms-2" id="lbCounter"></small>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- NOTIFICATION -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+
+    <div id="cartToast" class="toast" role="status" aria-live="polite" aria-atomic="true">
+
+        <div class="toast-header">
+
+            <i class="bi bi-check-circle-fill text-success me-2" id="toastIcon"></i>
+
+            <strong class="me-auto">DY Tech</strong>
+
+            <small>Just now</small>
+
+            <button type="button" class="btn-close"
+                data-bs-dismiss="toast" aria-label="Close"></button>
+
+        </div>
+
+        <div class="toast-body" id="toastMessage">
+            Product added to cart.
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- BOOTSTRAP JAVASCRIPT -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+
+    /* =====================================================
+       TOAST NOTIFICATIONS
+       showToast("message", "success" | "warning" | "info")
+    ===================================================== */
+    const toastElement = document.getElementById("cartToast");
+    const toastIcon = document.getElementById("toastIcon");
+    const toastMessage = document.getElementById("toastMessage");
+    const cartToast = new bootstrap.Toast(toastElement, { delay: 2800 });
+
+    const TOAST_ICONS = {
+        success: "bi-check-circle-fill text-success",
+        warning: "bi-exclamation-triangle-fill text-warning",
+        info: "bi-info-circle-fill text-primary"
+    };
+
+    function showToast(message, type = "success") {
+        toastIcon.className = "bi me-2 " + (TOAST_ICONS[type] || TOAST_ICONS.success);
+        toastMessage.textContent = message;
+        cartToast.show();
+    }
+
+
+    /* =====================================================
+       DARK MODE TOGGLE (saved in localStorage)
+    ===================================================== */
+    const themeToggle = document.getElementById("themeToggle");
+    const themeIcon = document.getElementById("themeIcon");
+
+    function applyTheme(theme, save) {
+        document.documentElement.setAttribute("data-bs-theme", theme);
+
+        if (theme === "dark") {
+            themeIcon.className = "bi bi-sun-fill";
+            themeToggle.setAttribute("aria-label", "Switch to light mode");
+        } else {
+            themeIcon.className = "bi bi-moon-stars-fill";
+            themeToggle.setAttribute("aria-label", "Switch to dark mode");
+        }
+
+        if (save) {
+            try { localStorage.setItem("dytech-theme", theme); } catch (e) {}
+        }
+    }
+
+    // Sync the icon with the theme that was set in <head>
+    applyTheme(document.documentElement.getAttribute("data-bs-theme"), false);
+
+    themeToggle.addEventListener("click", function () {
+        const current = document.documentElement.getAttribute("data-bs-theme");
+        applyTheme(current === "dark" ? "light" : "dark", true);
+    });
+
+
+    /* =====================================================
+       SHOPPING CART (saved in localStorage)
+    ===================================================== */
+    const CART_KEY = "dytech-cart";
+
+    function loadCart() {
+        try {
+            const data = JSON.parse(localStorage.getItem(CART_KEY));
+            return Array.isArray(data) ? data : [];
+        } catch (e) {
+            return [];
+        }
+    }
+
+    function saveCart() {
+        try { localStorage.setItem(CART_KEY, JSON.stringify(cart)); } catch (e) {}
+    }
+
+    let cart = loadCart();
+
+    const cartCount = document.getElementById("cartCount");
+    const cartItems = document.getElementById("cartItems");
+    const cartTotal = document.getElementById("cartTotal");
+    const cartModalElement = document.getElementById("cartModal");
+
+    // FORMAT PHILIPPINE PESOS
+    function formatPrice(price) {
+        return new Intl.NumberFormat("en-PH", {
+            style: "currency",
+            currency: "PHP",
+            maximumFractionDigits: 0
+        }).format(price);
+    }
+
+    // ADD PRODUCT TO CART
+    document.querySelectorAll(".add-cart").forEach(button => {
+
+        button.addEventListener("click", function () {
+
+            const name = this.dataset.name;
+            const price = Number(this.dataset.price);
+
+            const existingProduct = cart.find(item => item.name === name);
+
+            if (existingProduct) {
+                existingProduct.quantity++;
+            } else {
+                cart.push({ name: name, price: price, quantity: 1 });
+            }
+
+            updateCart(true);
+            showToast(name + " added to your cart.", "success");
+
+        });
+
+    });
+
+    // UPDATE CART DISPLAY
+    function updateCart(animate) {
+
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+        cartCount.textContent = totalItems;
+        cartTotal.textContent = formatPrice(totalPrice);
+
+        if (animate) {
+            cartCount.classList.remove("bump");
+            void cartCount.offsetWidth; // restart animation
+            cartCount.classList.add("bump");
+        }
+
+        saveCart();
+
+        if (cart.length === 0) {
+            cartItems.innerHTML = `
+                <p class="text-secondary text-center py-3">
+                    Your cart is currently empty.
+                </p>
+            `;
+            return;
+        }
+
+        cartItems.innerHTML = cart.map((item, index) => `
+
+            <div class="d-flex justify-content-between align-items-center border-bottom py-3 gap-2">
+
+                <div>
+                    <h6 class="mb-1 fw-bold">${item.name}</h6>
+                    <small class="text-secondary">${formatPrice(item.price)} each</small>
+
+                    <div class="d-flex align-items-center gap-2 mt-2">
+                        <button class="btn btn-outline-secondary qty-btn" type="button"
+                            data-action="dec" data-index="${index}" aria-label="Decrease quantity">−</button>
+                        <span class="fw-semibold">${item.quantity}</span>
+                        <button class="btn btn-outline-secondary qty-btn" type="button"
+                            data-action="inc" data-index="${index}" aria-label="Increase quantity">+</button>
+                    </div>
+                </div>
+
+                <div class="text-end">
+                    <strong class="d-block">${formatPrice(item.price * item.quantity)}</strong>
+                    <button class="btn btn-sm text-danger" type="button"
+                        data-action="remove" data-index="${index}">
+                        Remove
+                    </button>
+                </div>
+
+            </div>
+
+        `).join("");
+
+    }
+
+    // CART BUTTONS (+ / − / Remove)
+    cartItems.addEventListener("click", function (event) {
+
+        const button = event.target.closest("[data-action]");
+        if (!button) return;
+
+        const index = Number(button.dataset.index);
+        const item = cart[index];
+        if (!item) return;
+
+        const action = button.dataset.action;
+
+        if (action === "inc") {
+            item.quantity++;
+        } else if (action === "dec") {
+            item.quantity--;
+            if (item.quantity <= 0) {
+                cart.splice(index, 1);
+                showToast(item.name + " removed from your cart.", "info");
+            }
+        } else if (action === "remove") {
+            cart.splice(index, 1);
+            showToast(item.name + " removed from your cart.", "info");
+        }
+
+        updateCart(false);
+
+    });
+
+    // CLEAR CART
+    document.getElementById("clearCartButton").addEventListener("click", function () {
+
+        if (cart.length === 0) {
+            showToast("Your cart is already empty.", "info");
+            return;
+        }
+
+        cart = [];
+        updateCart(false);
+        showToast("Your cart has been cleared.", "info");
+
+    });
+
+    // CHECKOUT DEMO
+    document.getElementById("checkoutButton").addEventListener("click", function () {
+
+        if (cart.length === 0) {
+            showToast("Your shopping cart is empty.", "warning");
+            return;
+        }
+
+        const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+        const modal = bootstrap.Modal.getInstance(cartModalElement);
+        if (modal) modal.hide();
+
+        cart = [];
+        updateCart(false);
+
+        showToast("Checkout demo: order total " + formatPrice(total) +
+            ". Connect a backend to process real orders.", "success");
+
+    });
+
+    // Show any saved cart on page load
+    updateCart(false);
+
+
+    /* =====================================================
+       CATEGORY FILTER
+    ===================================================== */
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const productCards = document.querySelectorAll(".product-item");
+
+    filterButtons.forEach(button => {
+
+        button.addEventListener("click", function () {
+
+            filterButtons.forEach(btn => btn.classList.remove("active"));
+            this.classList.add("active");
+
+            const filter = this.dataset.filter;
+
+            productCards.forEach(card => {
+                if (filter === "all" || card.dataset.category === filter) {
+                    card.classList.remove("d-none");
+                } else {
+                    card.classList.add("d-none");
+                }
+            });
+
+        });
+
+    });
+
+
+    /* =====================================================
+       IMAGE LIGHTBOX
+       Any <img class="lightbox-img"> opens in the viewer.
+       Supports: click, Enter/Space, arrow keys, swipe, Esc.
+    ===================================================== */
+    const lightboxElement = document.getElementById("lightboxModal");
+    const lightboxModal = new bootstrap.Modal(lightboxElement);
+    const lbImage = document.getElementById("lbImage");
+    const lbCaption = document.getElementById("lbCaption");
+    const lbCounter = document.getElementById("lbCounter");
+    const lbPrev = document.getElementById("lbPrev");
+    const lbNext = document.getElementById("lbNext");
+
+    let lbItems = [];
+    let lbIndex = 0;
+
+    // Load a larger version of Unsplash images in the viewer
+    function fullSizeSrc(img) {
+        return img.src.replace(/w=\d+/, "w=1600");
+    }
+
+    function showLightboxImage() {
+        const img = lbItems[lbIndex];
+
+        lbImage.classList.add("loading");
+        lbImage.onload = function () { lbImage.classList.remove("loading"); };
+        lbImage.onerror = function () { lbImage.classList.remove("loading"); };
+
+        lbImage.src = fullSizeSrc(img);
+        lbImage.alt = img.alt;
+
+        lbCaption.textContent = img.alt;
+        lbCounter.textContent = lbItems.length > 1
+            ? "(" + (lbIndex + 1) + " / " + lbItems.length + ")"
+            : "";
+
+        const multiple = lbItems.length > 1;
+        lbPrev.classList.toggle("d-none", !multiple);
+        lbNext.classList.toggle("d-none", !multiple);
+    }
+
+    function openLightbox(img) {
+        // Only include images currently visible (respects the category filter)
+        lbItems = Array.from(document.querySelectorAll(".lightbox-img"))
+            .filter(item => !item.closest(".d-none"));
+
+        lbIndex = Math.max(0, lbItems.indexOf(img));
+
+        showLightboxImage();
+        lightboxModal.show();
+    }
+
+    function stepLightbox(direction) {
+        if (lbItems.length < 2) return;
+        lbIndex = (lbIndex + direction + lbItems.length) % lbItems.length;
+        showLightboxImage();
+    }
+
+    document.querySelectorAll(".lightbox-img").forEach(img => {
+
+        img.setAttribute("tabindex", "0");
+        img.setAttribute("role", "button");
+
+        img.addEventListener("click", function () { openLightbox(this); });
+
+        img.addEventListener("keydown", function (event) {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                openLightbox(this);
+            }
+        });
+
+    });
+
+    lbPrev.addEventListener("click", function () { stepLightbox(-1); });
+    lbNext.addEventListener("click", function () { stepLightbox(1); });
+
+    // Keyboard arrows
+    document.addEventListener("keydown", function (event) {
+        if (!lightboxElement.classList.contains("show")) return;
+
+        if (event.key === "ArrowLeft") stepLightbox(-1);
+        if (event.key === "ArrowRight") stepLightbox(1);
+    });
+
+    // Swipe on touch screens
+    let touchStartX = 0;
+
+    lightboxElement.addEventListener("touchstart", function (event) {
+        touchStartX = event.changedTouches[0].clientX;
+    }, { passive: true });
+
+    lightboxElement.addEventListener("touchend", function (event) {
+        const diff = event.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(diff) > 50) {
+            stepLightbox(diff > 0 ? -1 : 1);
+        }
+    }, { passive: true });
+
+    // Clear the image when closed
+    lightboxElement.addEventListener("hidden.bs.modal", function () {
+        lbImage.removeAttribute("src");
+    });
+
+
+    /* =====================================================
+       NEWSLETTER DEMO
+    ===================================================== */
+    document.getElementById("newsletterForm").addEventListener("submit", function (event) {
+
+        event.preventDefault();
+
+        showToast("Thank you for subscribing to DY Tech!", "success");
+
+        this.reset();
+
+    });
+
+</script>
+
+</body>
+</html>
